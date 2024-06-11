@@ -36,7 +36,6 @@ CREATE TABLE public.cloud (
 	config_key varchar(50) NULL,
 	ui_mapping jsonb NULL,
 	status varchar(255) NULL,
-	service_category varchar(255) NULL,
 	created_on timestamp NULL,
 	updated_on timestamp NULL,
 	updated_by varchar(255) NULL,

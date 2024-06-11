@@ -1,25 +1,72 @@
-INSERT INTO public.cloud (element_type, "name", status, created_on, created_by, list_query, config_query, config_key, is_cron_scheduled, service_category) VALUES('APIGATEWAY', 'AWS', 'ACTIVE', current_timestamp, 'System', 'getApiGwList', 'getApiGwConfig', 'apiKey', true, 'OTHER');
-INSERT INTO public.cloud (element_type, "name", status, created_on, created_by, list_query, config_query, config_key, is_cron_scheduled, service_category) VALUES('APPMESH', 'AWS', 'ACTIVE', current_timestamp, 'System', null, null, null, false, 'OTHER');
-INSERT INTO public.cloud (element_type, "name", status, created_on, created_by, list_query, config_query, config_key, is_cron_scheduled, service_category) VALUES('ATHENA', 'AWS', 'ACTIVE', current_timestamp, 'System', null, null, null, false, 'OTHER');
-INSERT INTO public.cloud (element_type, "name", status, created_on, created_by, list_query, config_query, config_key, is_cron_scheduled, service_category) VALUES('CDN', 'AWS', 'ACTIVE', current_timestamp, 'System', 'getCdnList', null, null, true, 'OTHER');
-INSERT INTO public.cloud (element_type, "name", status, created_on, created_by, list_query, config_query, config_key, is_cron_scheduled, service_category) VALUES('CONFIGSERVICE', 'AWS', 'ACTIVE', current_timestamp, 'System', null, 'getDiscoveredResourceCounts', null, true, 'OTHER');
-INSERT INTO public.cloud (element_type, "name", status, created_on, created_by, list_query, config_query, config_key, is_cron_scheduled, service_category) VALUES('DYNAMODB', 'AWS', 'ACTIVE', current_timestamp, 'System','getDynamoDbList', 'getDynamoDbConfig', 'tableName', true, 'DATABASE');
-INSERT INTO public.cloud (element_type, "name", status, created_on, created_by, list_query, config_query, config_key, is_cron_scheduled, service_category) VALUES('EC2', 'AWS', 'ACTIVE', current_timestamp, 'System','getEc2List', 'getEc2ConfigById', 'instanceId', true, 'COMPUTE');
-INSERT INTO public.cloud (element_type, "name", status, created_on, created_by, list_query, config_query, config_key, is_cron_scheduled, service_category) VALUES('ECS', 'AWS', 'ACTIVE', current_timestamp, 'System','getEcsList', 'getEcsConfig', 'clusterName', true, 'COMPUTE');
-INSERT INTO public.cloud (element_type, "name", status, created_on, created_by, list_query, config_query, config_key, is_cron_scheduled, service_category) VALUES('EKS', 'AWS', 'ACTIVE', current_timestamp, 'System','getEksList', 'getEksConfig', 'clusterName', true, 'COMPUTE');
-INSERT INTO public.cloud (element_type, "name", status, created_on, created_by, list_query, config_query, config_key, is_cron_scheduled, service_category) VALUES('ELASTICSEARCHSERVICE', 'AWS', 'ACTIVE', current_timestamp, 'System',null, null, null, false, 'OTHER');
-INSERT INTO public.cloud (element_type, "name", status, created_on, created_by, list_query, config_query, config_key, is_cron_scheduled, service_category) VALUES('ELBV2', 'AWS', 'ACTIVE', current_timestamp, 'System','getLbList', null, null, true, 'OTHER');
-INSERT INTO public.cloud (element_type, "name", status, created_on, created_by, list_query, config_query, config_key, is_cron_scheduled, service_category) VALUES('GLACIER', 'AWS', 'ACTIVE', current_timestamp, 'System',null, null, null, false, 'STORAGE');
-INSERT INTO public.cloud (element_type, "name", status, created_on, created_by, list_query, config_query, config_key, is_cron_scheduled, service_category) VALUES('GLUE', 'AWS', 'ACTIVE', current_timestamp, 'System',null, null, null, false, 'OTHER');
-INSERT INTO public.cloud (element_type, "name", status, created_on, created_by, list_query, config_query, config_key, is_cron_scheduled, service_category) VALUES('IAM', 'AWS', 'ACTIVE', current_timestamp, 'System',null, null, null, false, 'OTHER');
-INSERT INTO public.cloud (element_type, "name", status, created_on, created_by, list_query, config_query, config_key, is_cron_scheduled, service_category) VALUES('KINESIS', 'AWS', 'ACTIVE', current_timestamp, 'System','getKinesisList', 'getKinesisConfig', 'streamName', true, 'OTHER');
-INSERT INTO public.cloud (element_type, "name", status, created_on, created_by, list_query, config_query, config_key, is_cron_scheduled, service_category) VALUES('KMS', 'AWS', 'ACTIVE', current_timestamp, 'System','getKmsList', 'getKmsConfig', 'keyId', true, 'OTHER');
-INSERT INTO public.cloud (element_type, "name", status, created_on, created_by, list_query, config_query, config_key, is_cron_scheduled, service_category) VALUES('LAMBDA', 'AWS', 'ACTIVE', current_timestamp, 'System','getLambdaList', 'getLambdaConfig', 'functionName', true, 'COMPUTE');
-INSERT INTO public.cloud (element_type, "name", status, created_on, created_by, list_query, config_query, config_key, is_cron_scheduled, service_category) VALUES('MEMORYDB', 'AWS', 'ACTIVE', current_timestamp, 'System',null, null, null, false, 'DATABASE');
-INSERT INTO public.cloud (element_type, "name", status, created_on, created_by, list_query, config_query, config_key, is_cron_scheduled, service_category) VALUES('OPENSEARCHSERVICE', 'AWS', 'ACTIVE', current_timestamp, 'System',null, null, null, false, 'OTHER');
-INSERT INTO public.cloud (element_type, "name", status, created_on, created_by, list_query, config_query, config_key, is_cron_scheduled, service_category) VALUES('RDS', 'AWS', 'ACTIVE', current_timestamp, 'System','getRdsList', 'getRdsConfig', 'arn', true, 'DATABASE');
-INSERT INTO public.cloud (element_type, "name", status, created_on, created_by, list_query, config_query, config_key, is_cron_scheduled, service_category) VALUES('S3', 'AWS', 'ACTIVE', current_timestamp, 'System','getS3List', 'getS3Config', 'bucketName', true, 'STORAGE');
-INSERT INTO public.cloud (element_type, "name", status, created_on, created_by, list_query, config_query, config_key, is_cron_scheduled, service_category) VALUES('VPC', 'AWS', 'ACTIVE', current_timestamp, 'System','getVpcList', 'getVpcConfig', 'instanceId', true, 'NETWORK');
-INSERT INTO public.cloud (element_type, "name", status, created_on, created_by, list_query, config_query, config_key, is_cron_scheduled, service_category) VALUES('WAF', 'AWS', 'ACTIVE', current_timestamp, 'System','getWafList', 'getWafConfig', 'instanceId', true, 'OTHER');
-
-
+INSERT INTO public.cloud
+(element_type, "name", is_cron_scheduled, list_query, config_query, config_key, ui_mapping, status, created_on, created_by)
+VALUES('APIGATEWAY', 'AWS', true, 'getApiGwList', 'getApiGwConfig', 'apiKey', NULL, 'ACTIVE', current_timestamp, 'System');
+INSERT INTO public.cloud
+(element_type, "name", is_cron_scheduled, list_query, config_query, config_key, ui_mapping, status, created_on, created_by)
+VALUES('APPMESH', 'AWS', false, NULL, NULL, NULL, NULL, 'ACTIVE', current_timestamp, 'System');
+INSERT INTO public.cloud
+(element_type, "name", is_cron_scheduled, list_query, config_query, config_key, ui_mapping, status, created_on, created_by)
+VALUES('ATHENA', 'AWS', false, NULL, NULL, NULL, NULL, 'ACTIVE', current_timestamp, 'System');
+INSERT INTO public.cloud
+(element_type, "name", is_cron_scheduled, list_query, config_query, config_key, ui_mapping, status, created_on, created_by)
+VALUES('CDN', 'AWS', true, 'getCdnList', NULL, NULL, NULL, 'ACTIVE', current_timestamp, 'System');
+INSERT INTO public.cloud
+(element_type, "name", is_cron_scheduled, list_query, config_query, config_key, ui_mapping, status, created_on, created_by)
+VALUES('CONFIGSERVICE', 'AWS', true, NULL, 'getDiscoveredResourceCounts', NULL, NULL, 'ACTIVE', current_timestamp, 'System');
+INSERT INTO public.cloud
+(element_type, "name", is_cron_scheduled, list_query, config_query, config_key, ui_mapping, status, created_on, created_by)
+VALUES('DYNAMODB', 'AWS', true, 'getDynamoDbList', 'getDynamoDbConfig', 'tableName', NULL, 'ACTIVE', current_timestamp, 'System');
+INSERT INTO public.cloud
+(element_type, "name", is_cron_scheduled, list_query, config_query, config_key, ui_mapping, status, created_on, created_by)
+VALUES('EC2', 'AWS', true, 'getEc2List', 'getEc2ConfigById', 'instanceId', '{"key": [{"productCategory": {"name": "3 tier", "serviceCategory": {"name": ["web", "app", "data", "aux"]}}}, {"productCategory": {"name": "soa", "serviceCategory": {"name": ["app", "data"]}}}]}'::jsonb, 'ACTIVE', current_timestamp, 'System');
+INSERT INTO public.cloud
+(element_type, "name", is_cron_scheduled, list_query, config_query, config_key, ui_mapping, status, created_on, created_by)
+VALUES('ECS', 'AWS', true, 'getEcsList', 'getEcsConfig', 'clusterName', '{"key": [{"productCategory": {"name": "3 tier", "serviceCategory": {"name": ["web", "app", "data", "aux"]}}}, {"productCategory": {"name": "soa", "serviceCategory": {"name": ["app", "data"]}}}]}'::jsonb, 'ACTIVE', current_timestamp, 'System');
+INSERT INTO public.cloud
+(element_type, "name", is_cron_scheduled, list_query, config_query, config_key, ui_mapping, status, created_on, created_by)
+VALUES('EKS', 'AWS', true, 'getEksList', 'getEksConfig', 'clusterName', '{"key": [{"productCategory": {"name": "3 tier", "serviceCategory": {"name": ["web", "app", "data", "aux"]}}}, {"productCategory": {"name": "soa", "serviceCategory": {"name": ["app", "data"]}}}]}'::jsonb, 'ACTIVE', current_timestamp, 'System');
+INSERT INTO public.cloud
+(element_type, "name", is_cron_scheduled, list_query, config_query, config_key, ui_mapping, status, created_on, created_by)
+VALUES('ELASTICSEARCHSERVICE', 'AWS', false, NULL, NULL, NULL, NULL, 'ACTIVE', current_timestamp, 'System');
+INSERT INTO public.cloud
+(element_type, "name", is_cron_scheduled, list_query, config_query, config_key, ui_mapping, status, created_on, created_by)
+VALUES('ELBV2', 'AWS', true, 'getLbList', NULL, NULL, NULL, 'ACTIVE', current_timestamp, 'System');
+INSERT INTO public.cloud
+(element_type, "name", is_cron_scheduled, list_query, config_query, config_key, ui_mapping, status, created_on, created_by)
+VALUES('GLACIER', 'AWS', false, NULL, NULL, NULL, NULL, 'ACTIVE', current_timestamp, 'System');
+INSERT INTO public.cloud
+(element_type, "name", is_cron_scheduled, list_query, config_query, config_key, ui_mapping, status, created_on, created_by)
+VALUES('GLUE', 'AWS', false, NULL, NULL, NULL, NULL, 'ACTIVE', current_timestamp, 'System');
+INSERT INTO public.cloud
+(element_type, "name", is_cron_scheduled, list_query, config_query, config_key, ui_mapping, status, created_on, created_by)
+VALUES('IAM', 'AWS', false, NULL, NULL, NULL, NULL, 'ACTIVE', current_timestamp, 'System');
+INSERT INTO public.cloud
+(element_type, "name", is_cron_scheduled, list_query, config_query, config_key, ui_mapping, status, created_on, created_by)
+VALUES('KINESIS', 'AWS', true, 'getKinesisList', 'getKinesisConfig', 'streamName', NULL, 'ACTIVE', current_timestamp, 'System');
+INSERT INTO public.cloud
+(element_type, "name", is_cron_scheduled, list_query, config_query, config_key, ui_mapping, status, created_on, created_by)
+VALUES('KMS', 'AWS', true, 'getKmsList', 'getKmsConfig', 'keyId', NULL, 'ACTIVE', current_timestamp, 'System');
+INSERT INTO public.cloud
+(element_type, "name", is_cron_scheduled, list_query, config_query, config_key, ui_mapping, status, created_on, created_by)
+VALUES('LAMBDA', 'AWS', true, 'getLambdaList', 'getLambdaConfig', 'functionName', '{"key": [{"productCategory": {"name": "soa", "serviceCategory": {"name": ["app"]}}}]}'::jsonb, 'ACTIVE', current_timestamp, 'System');
+INSERT INTO public.cloud
+(element_type, "name", is_cron_scheduled, list_query, config_query, config_key, ui_mapping, status, created_on, created_by)
+VALUES('MEMORYDB', 'AWS', false, NULL, NULL, NULL, NULL, 'ACTIVE', current_timestamp, 'System');
+INSERT INTO public.cloud
+(element_type, "name", is_cron_scheduled, list_query, config_query, config_key, ui_mapping, status, created_on, created_by)
+VALUES('OPENSEARCHSERVICE', 'AWS', false, NULL, NULL, NULL, NULL, 'ACTIVE', current_timestamp, 'System');
+INSERT INTO public.cloud
+(element_type, "name", is_cron_scheduled, list_query, config_query, config_key, ui_mapping, status, created_on, created_by)
+VALUES('RDS', 'AWS', true, 'getRdsList', 'getRdsConfig', 'arn', '{"key": [{"productCategory": {"name": "3 tier", "serviceCategory": {"name": ["data"]}}}]}'::jsonb, 'ACTIVE', current_timestamp, 'System');
+INSERT INTO public.cloud
+(element_type, "name", is_cron_scheduled, list_query, config_query, config_key, ui_mapping, status, created_on, created_by)
+VALUES('S3', 'AWS', true, 'getS3List', 'getS3Config', 'bucketName', NULL, 'ACTIVE', current_timestamp, 'System');
+INSERT INTO public.cloud
+(element_type, "name", is_cron_scheduled, list_query, config_query, config_key, ui_mapping, status, created_on, created_by)
+VALUES('VPC', 'AWS', true, 'getVpcList', 'getVpcConfig', 'instanceId', NULL, 'ACTIVE', current_timestamp, 'System');
+INSERT INTO public.cloud
+(element_type, "name", is_cron_scheduled, list_query, config_query, config_key, ui_mapping, status, created_on, created_by)
+VALUES('WAF', 'AWS', true, 'getWafList', 'getWafConfig', 'instanceId', NULL, 'ACTIVE', current_timestamp, 'System');
+INSERT INTO public.cloud
+(element_type, "name", is_cron_scheduled, list_query, config_query, config_key, ui_mapping, status, created_on, created_by)
+VALUES('SSL', 'AWS', true, 'getSslList', 'getSslConfig', 'instanceId', NULL, 'ACTIVE', current_timestamp, 'System');
