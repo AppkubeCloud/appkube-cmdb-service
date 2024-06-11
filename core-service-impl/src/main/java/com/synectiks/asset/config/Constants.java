@@ -183,6 +183,7 @@ public final class Constants {
     public static final String GLACIER = "GLACIER";
     public static final String CDN = "CDN";
     public static final String KMS = "KMS";
+    public static final String SSL = "SSL";
 
     public static final String KINESYS = "KINESYS";
     public static final String DYNAMODB = "DYNAMODB";

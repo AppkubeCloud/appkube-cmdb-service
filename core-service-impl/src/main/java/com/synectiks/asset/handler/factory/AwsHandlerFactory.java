@@ -44,6 +44,9 @@ public class AwsHandlerFactory {
     }
 
     public static synchronized CloudHandler getHandlerByQuery(String query){
+        if("getSslList".equalsIgnoreCase(query)){
+            return AssetserviceApp.getBean(SslHandler.class);
+        }
         if("getApiGwList".equalsIgnoreCase(query)){
             return AssetserviceApp.getBean(ApiGwHandler.class);
         }

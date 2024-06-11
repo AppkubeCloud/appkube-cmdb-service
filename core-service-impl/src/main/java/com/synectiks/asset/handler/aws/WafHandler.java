@@ -90,7 +90,7 @@ public class WafHandler implements CloudHandler {
 
     @Override
     public String getUrl(){
-        return env.getProperty("awsx-api.base-url")+env.getProperty("awsx-api.cdn-api");
+        return env.getProperty("awsx-api.base-url")+env.getProperty("awsx-api.waf-api");
     }
 
     // TODO: static values to be changed with actual values
