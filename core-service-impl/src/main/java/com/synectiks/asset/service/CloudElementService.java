@@ -538,8 +538,22 @@ public class CloudElementService {
         return cloudElementRepository.getBiMappingCloudElementInstances(orgId, departmentId, productId, productEnvId, elementType);
     }
 
-    public Page<CloudElement> getAllCloudElementsOfOrganization(Long orgId, Integer pageNo, Integer pageSize){
-        logger.info("Request to get all cloud-elements of an organization. Org id: {} ", orgId);
+    public Page<CloudElement> getAllCloudElementsOfOrganization(Long orgId, Integer pageNo, Integer pageSize, String filterFlag){
+        logger.info("Request to get cloud-elements of an organization. Org id: {} ", orgId);
+        if(!StringUtils.isBlank(filterFlag)
+                && (Constants.TAGGED.equalsIgnoreCase(filterFlag) || Constants.UNTAGGED.equalsIgnoreCase(filterFlag)) ){
+            boolean isTagged = Constants.TAGGED.equalsIgnoreCase(filterFlag);
+            if(isTagged){
+                logger.debug("Getting tagged cloud-elements");
+                return cloudElementRepository.getAllTaggedCloudElementsOfOrganization(orgId, PageRequest.of(pageNo.intValue(), pageSize.intValue()));
+            }
+            logger.debug("Getting un-tagged cloud-elements");
+            return cloudElementRepository.getAllUnTaggedCloudElementsOfOrganization(orgId, PageRequest.of(pageNo.intValue(), pageSize.intValue()));
+        }else if(!StringUtils.isBlank(filterFlag)  && Constants.NON_LTE.equalsIgnoreCase(filterFlag)) {
+            logger.debug("Getting non-lte cloud-elements");
+            return cloudElementRepository.getAllNonLteCloudElementsOfOrganization(orgId, PageRequest.of(pageNo.intValue(), pageSize.intValue()));
+        }
+        logger.debug("Getting all cloud-elements");
         return cloudElementRepository.getAllCloudElementsOfOrganization(orgId, PageRequest.of(pageNo.intValue(), pageSize.intValue()));
     }
 

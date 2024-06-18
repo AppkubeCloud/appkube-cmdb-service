@@ -291,9 +291,9 @@ public class CloudElementController implements CloudElementApi {
     }
 
     @Override
-    public ResponseEntity<Object> getAllCloudElementsOfOrganization(Long orgId, Integer pageNo, Integer pageSize) {
+    public ResponseEntity<Object> getAllCloudElementsOfOrganization(Long orgId, String filterFlag, Integer pageNo, Integer pageSize) {
         logger.info("REST request to get all cloud-elements of an organization. Org id: {} ", orgId);
-        Page<CloudElement> cloudElementPage = cloudElementService.getAllCloudElementsOfOrganization(orgId, pageNo, pageSize);
+        Page<CloudElement> cloudElementPage = cloudElementService.getAllCloudElementsOfOrganization(orgId, pageNo, pageSize, filterFlag);
         logger.debug("Total elements {}, Total pages {}",cloudElementPage.getTotalElements(), cloudElementPage.getTotalPages());
         List<CloudElementDTO> cloudElementDTOList = CloudElementMapper.INSTANCE.entityToDtoList(cloudElementPage.toList());
         DiscoveredResourceDTO discoveredResourceDTO = new DiscoveredResourceDTO();

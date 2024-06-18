@@ -1786,6 +1786,11 @@ paths:
             format: int
             default: 10
           required: false
+        - in: query
+          name: filterFlag
+          schema:
+            type: string
+          required: true
       responses:
         200:
           description: OK

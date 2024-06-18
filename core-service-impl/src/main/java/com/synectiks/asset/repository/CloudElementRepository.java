@@ -93,4 +93,62 @@ public interface CloudElementRepository extends JpaRepository<CloudElement, Long
             "\tAND o.id = :orgId order by ce.element_type asc";
     @Query(value = GET_ALL_ELEMENTS_OF_ORG, nativeQuery = true)
     Page<CloudElement> getAllCloudElementsOfOrganization(@Param("orgId") Long orgId, Pageable pageable);
+
+    String GET_ALL_TAGGED_ELEMENTS_OF_ORG="select ce.* " +
+            "FROM \n" +
+            "\tcloud_element ce, \n" +
+            "\tlandingzone l, \n" +
+            "\tdepartment d, \n" +
+            "\torganization o\n" +
+            "WHERE \n" +
+            "\tl.department_id = d.id \n" +
+            "\tAND d.organization_id = o.id \n" +
+            "\tAND ce.landingzone_id = l.id and ce.is_tagged = true \n" +
+            "\tAND o.id = :orgId order by ce.element_type asc";
+    @Query(value = GET_ALL_TAGGED_ELEMENTS_OF_ORG, nativeQuery = true)
+    Page<CloudElement> getAllTaggedCloudElementsOfOrganization(@Param("orgId") Long orgId, Pageable pageable);
+
+    String GET_ALL_UNTAGGED_ELEMENTS_OF_ORG="select ce.* " +
+            "FROM \n" +
+            "\tcloud_element ce, \n" +
+            "\tlandingzone l, \n" +
+            "\tdepartment d, \n" +
+            "\torganization o\n" +
+            "WHERE \n" +
+            "\tl.department_id = d.id \n" +
+            "\tAND d.organization_id = o.id \n" +
+            "\tAND ce.landingzone_id = l.id  and (ce.is_tagged is null or ce.is_tagged = false) \n" +
+            "\tAND o.id = :orgId order by ce.element_type asc";
+    @Query(value = GET_ALL_UNTAGGED_ELEMENTS_OF_ORG, nativeQuery = true)
+    Page<CloudElement> getAllUnTaggedCloudElementsOfOrganization(@Param("orgId") Long orgId, Pageable pageable);
+
+    String GET_ALL_NON_LTE_ELEMENTS_OF_ORG = "select ce.* \n" +
+            "FROM \n" +
+            "cloud_element ce, \n" +
+            "landingzone l,  \n" +
+            "department d,  \n" +
+            "organization o \n" +
+            "WHERE  \n" +
+            "l.department_id = d.id  \n" +
+            "AND d.organization_id = o.id  \n" +
+            "AND ce.landingzone_id = l.id  \n" +
+            "AND o.id = :orgId  \n" +
+            "and ce.id not in( \n" +
+            "\tselect ce.id \n" +
+            "\tFROM \n" +
+            "\tcloud_element ce, \n" +
+            "\tlandingzone l,  \n" +
+            "\tdepartment d,  \n" +
+            "\torganization o \n" +
+            "\tWHERE  \n" +
+            "\tl.department_id = d.id  \n" +
+            "\tAND d.organization_id = o.id  \n" +
+            "\tAND ce.landingzone_id = l.id  \n" +
+            "\tAND o.id = :orgId \n" +
+            "\tand (ce.is_log_enabled = true and ce.is_trace_enabled = true and ce.is_event_enabled = true)\n" +
+            "\n" +
+            ")\n" +
+            "order by ce.element_type asc";
+    @Query(value = GET_ALL_NON_LTE_ELEMENTS_OF_ORG, nativeQuery = true)
+    Page<CloudElement> getAllNonLteCloudElementsOfOrganization(@Param("orgId") Long orgId, Pageable pageable);
 }
