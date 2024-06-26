@@ -24,6 +24,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -538,23 +539,23 @@ public class CloudElementService {
         return cloudElementRepository.getBiMappingCloudElementInstances(orgId, departmentId, productId, productEnvId, elementType);
     }
 
-    public Page<CloudElement> getAllCloudElementsOfOrganization(Long orgId, Integer pageNo, Integer pageSize, String filterFlag){
+    public List<CloudElement> getAllCloudElementsOfOrganization(Long orgId, String filterFlag, Long landingZoneId){
         logger.info("Request to get cloud-elements of an organization. Org id: {} ", orgId);
         if(!StringUtils.isBlank(filterFlag)
                 && (Constants.TAGGED.equalsIgnoreCase(filterFlag) || Constants.UNTAGGED.equalsIgnoreCase(filterFlag)) ){
             boolean isTagged = Constants.TAGGED.equalsIgnoreCase(filterFlag);
             if(isTagged){
                 logger.debug("Getting tagged cloud-elements");
-                return cloudElementRepository.getAllTaggedCloudElementsOfOrganization(orgId, PageRequest.of(pageNo.intValue(), pageSize.intValue()));
+                return cloudElementRepository.getAllTaggedCloudElementsOfOrganization(orgId, landingZoneId);
             }
             logger.debug("Getting un-tagged cloud-elements");
-            return cloudElementRepository.getAllUnTaggedCloudElementsOfOrganization(orgId, PageRequest.of(pageNo.intValue(), pageSize.intValue()));
+            return cloudElementRepository.getAllUnTaggedCloudElementsOfOrganization(orgId, landingZoneId);
         }else if(!StringUtils.isBlank(filterFlag)  && Constants.NON_LTE.equalsIgnoreCase(filterFlag)) {
             logger.debug("Getting non-lte cloud-elements");
-            return cloudElementRepository.getAllNonLteCloudElementsOfOrganization(orgId, PageRequest.of(pageNo.intValue(), pageSize.intValue()));
+            return cloudElementRepository.getAllNonLteCloudElementsOfOrganization(orgId, landingZoneId);
         }
         logger.debug("Getting all cloud-elements");
-        return cloudElementRepository.getAllCloudElementsOfOrganization(orgId, PageRequest.of(pageNo.intValue(), pageSize.intValue()));
+        return cloudElementRepository.getAllCloudElementsOfOrganization(orgId, landingZoneId);
     }
 
 }

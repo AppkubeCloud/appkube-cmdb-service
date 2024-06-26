@@ -1773,24 +1773,16 @@ paths:
             format: int64
           required: true
         - in: query
-          name: pageNo
-          schema:
-            type: integer
-            format: int
-            default: 0
-          required: false
-        - in: query
-          name: pageSize
-          schema:
-            type: integer
-            format: int
-            default: 10
-          required: false
-        - in: query
           name: filterFlag
           schema:
             type: string
           required: true
+        - in: query
+          name: landingZoneId
+          schema:
+            type: integer
+            format: int64
+          required: false
       responses:
         200:
           description: OK

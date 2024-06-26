@@ -4,7 +4,6 @@ import com.synectiks.asset.domain.CloudElement;
 import com.synectiks.asset.domain.query.BiMappingBusinessCloudElementQueryObj;
 import com.synectiks.asset.domain.query.CloudElementTagQueryObj;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -90,9 +89,9 @@ public interface CloudElementRepository extends JpaRepository<CloudElement, Long
             "\tl.department_id = d.id \n" +
             "\tAND d.organization_id = o.id \n" +
             "\tAND ce.landingzone_id = l.id \n" +
-            "\tAND o.id = :orgId order by ce.element_type asc";
+            "\tAND o.id = :orgId and l.id = :landingZoneId order by ce.element_type asc";
     @Query(value = GET_ALL_ELEMENTS_OF_ORG, nativeQuery = true)
-    Page<CloudElement> getAllCloudElementsOfOrganization(@Param("orgId") Long orgId, Pageable pageable);
+    List<CloudElement> getAllCloudElementsOfOrganization(@Param("orgId") Long orgId, @Param("landingZoneId") Long landingZoneId);
 
     String GET_ALL_TAGGED_ELEMENTS_OF_ORG="select ce.* " +
             "FROM \n" +
@@ -104,9 +103,9 @@ public interface CloudElementRepository extends JpaRepository<CloudElement, Long
             "\tl.department_id = d.id \n" +
             "\tAND d.organization_id = o.id \n" +
             "\tAND ce.landingzone_id = l.id and ce.is_tagged = true \n" +
-            "\tAND o.id = :orgId order by ce.element_type asc";
+            "\tAND o.id = :orgId and l.id = :landingZoneId order by ce.element_type asc";
     @Query(value = GET_ALL_TAGGED_ELEMENTS_OF_ORG, nativeQuery = true)
-    Page<CloudElement> getAllTaggedCloudElementsOfOrganization(@Param("orgId") Long orgId, Pageable pageable);
+    List<CloudElement> getAllTaggedCloudElementsOfOrganization(@Param("orgId") Long orgId, @Param("landingZoneId") Long landingZoneId);
 
     String GET_ALL_UNTAGGED_ELEMENTS_OF_ORG="select ce.* " +
             "FROM \n" +
@@ -118,9 +117,9 @@ public interface CloudElementRepository extends JpaRepository<CloudElement, Long
             "\tl.department_id = d.id \n" +
             "\tAND d.organization_id = o.id \n" +
             "\tAND ce.landingzone_id = l.id  and (ce.is_tagged is null or ce.is_tagged = false) \n" +
-            "\tAND o.id = :orgId order by ce.element_type asc";
+            "\tAND o.id = :orgId and l.id = :landingZoneId order by ce.element_type asc";
     @Query(value = GET_ALL_UNTAGGED_ELEMENTS_OF_ORG, nativeQuery = true)
-    Page<CloudElement> getAllUnTaggedCloudElementsOfOrganization(@Param("orgId") Long orgId, Pageable pageable);
+    List<CloudElement> getAllUnTaggedCloudElementsOfOrganization(@Param("orgId") Long orgId, @Param("landingZoneId") Long landingZoneId);
 
     String GET_ALL_NON_LTE_ELEMENTS_OF_ORG = "select ce.* \n" +
             "FROM \n" +
@@ -132,7 +131,7 @@ public interface CloudElementRepository extends JpaRepository<CloudElement, Long
             "l.department_id = d.id  \n" +
             "AND d.organization_id = o.id  \n" +
             "AND ce.landingzone_id = l.id  \n" +
-            "AND o.id = :orgId  \n" +
+            "AND o.id = :orgId and l.id = :landingZoneId \n" +
             "and ce.id not in( \n" +
             "\tselect ce.id \n" +
             "\tFROM \n" +
@@ -144,11 +143,11 @@ public interface CloudElementRepository extends JpaRepository<CloudElement, Long
             "\tl.department_id = d.id  \n" +
             "\tAND d.organization_id = o.id  \n" +
             "\tAND ce.landingzone_id = l.id  \n" +
-            "\tAND o.id = :orgId \n" +
+            "\tAND o.id = :orgId and l.id = :landingZoneId \n" +
             "\tand (ce.is_log_enabled = true and ce.is_trace_enabled = true and ce.is_event_enabled = true)\n" +
             "\n" +
             ")\n" +
             "order by ce.element_type asc";
     @Query(value = GET_ALL_NON_LTE_ELEMENTS_OF_ORG, nativeQuery = true)
-    Page<CloudElement> getAllNonLteCloudElementsOfOrganization(@Param("orgId") Long orgId, Pageable pageable);
+    List<CloudElement> getAllNonLteCloudElementsOfOrganization(@Param("orgId") Long orgId, @Param("landingZoneId") Long landingZoneId);
 }

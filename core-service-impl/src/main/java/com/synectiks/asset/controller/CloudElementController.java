@@ -21,6 +21,7 @@ import com.synectiks.asset.service.CloudElementSummaryService;
 import com.synectiks.asset.util.JsonAndObjectConverterUtil;
 import com.synectiks.asset.web.rest.validation.Validator;
 import io.github.jhipster.web.util.ResponseUtil;
+import io.swagger.annotations.ApiParam;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,8 +32,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
@@ -291,14 +295,14 @@ public class CloudElementController implements CloudElementApi {
     }
 
     @Override
-    public ResponseEntity<Object> getAllCloudElementsOfOrganization(Long orgId, String filterFlag, Integer pageNo, Integer pageSize) {
+    public ResponseEntity<Object> getAllCloudElementsOfOrganization(Long orgId, String filterFlag, Long landingZoneId) {
         logger.info("REST request to get all cloud-elements of an organization. Org id: {} ", orgId);
-        Page<CloudElement> cloudElementPage = cloudElementService.getAllCloudElementsOfOrganization(orgId, pageNo, pageSize, filterFlag);
-        logger.debug("Total elements {}, Total pages {}",cloudElementPage.getTotalElements(), cloudElementPage.getTotalPages());
-        List<CloudElementDTO> cloudElementDTOList = CloudElementMapper.INSTANCE.entityToDtoList(cloudElementPage.toList());
+        List<CloudElement> cloudElementPage = cloudElementService.getAllCloudElementsOfOrganization(orgId, filterFlag, landingZoneId);
+//        logger.debug("Total elements {}, Total pages {}",cloudElementPage.getTotalElements(), cloudElementPage.getTotalPages());
+        List<CloudElementDTO> cloudElementDTOList = CloudElementMapper.INSTANCE.entityToDtoList(cloudElementPage);
         DiscoveredResourceDTO discoveredResourceDTO = new DiscoveredResourceDTO();
-        discoveredResourceDTO.setTotalPages(new Long(cloudElementPage.getTotalPages()));
-        discoveredResourceDTO.setTotalRecords(cloudElementPage.getTotalElements());
+//        discoveredResourceDTO.setTotalPages(new Long(cloudElementPage.getTotalPages()));
+        discoveredResourceDTO.setTotalRecords(new Long(cloudElementPage.size()));
         discoveredResourceDTO.setCloudElementList(cloudElementDTOList);
         return ResponseEntity.ok(discoveredResourceDTO);
     }
